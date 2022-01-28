@@ -1,0 +1,20 @@
+docker exec -it 3gpchallenge_db-mongodb_1 bash
+
+mongo -u main_admin -p abc123
+
+db.getSiblingDB("dev").createUser({
+      user : "main_admin",
+      pwd  : "abc123",
+      roles: [ { role: "root", db: "admin" } ]
+ });
+
+db.getSiblingDB('admin').auth("main_admin", "abc123");
+
+use dev
+
+#List Collections
+db.getCollectionInfos();
+
+db.test.find();
+
+db.<collection>.drop()

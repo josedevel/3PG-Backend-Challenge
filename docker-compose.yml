@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db-mongodb:
+    # In production, you may want to use a managed database service
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=dev
+      - MONGO_INITDB_ROOT_USERNAME=main_admin
+      # You should definitely change the password in production
+      - MONGO_INITDB_ROOT_PASSWORD=abc123
+    volumes:
+      - db-data:/var/lib/mongodb/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/mongodb/data:rw
+    #ports:
+      #- "27017:27017"
+    ports:
+      - target: 27017
+        published: 27017
+        protocol: tcp
+volumes:
+  db-data: {}
+
