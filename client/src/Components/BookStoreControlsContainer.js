@@ -3,8 +3,6 @@ import axios from 'axios';
 
 const BookStoreControlsContainer = (props) => {
 
-    //const {todoLists} = props;
-
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('test');
     const [price, setPrice] = useState('test');
@@ -40,7 +38,6 @@ const BookStoreControlsContainer = (props) => {
     const handleGetBtn = (event) => {
         axios.get("http://localhost:3001/books")
       .then((response) => {
-          //console.log(response);
           setBooks(response.data);
       })
     }
